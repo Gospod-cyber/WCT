@@ -1,6 +1,6 @@
 export default function Hero() {
   return (
-    <section className="min-h-screen bg-[#09090B] text-white flex flex-col justify-center items-center px-6">
+    <section className="min-h-screen bg-gradient-to-br from-black via-zinc-900 to-slate-900 text-white flex flex-col justify-center items-center px-6">
 
       <h1 className="text-6xl md:text-8xl font-bold text-center">
         War Cost Tracker
@@ -11,16 +11,18 @@ export default function Hero() {
       </p>
 
       <div className="mt-14 text-center">
-
         <p className="text-gray-400 uppercase tracking-[4px]">
           Estimated Cost
         </p>
 
-        <h2 className="text-6xl md:text-8xl font-extrabold text-red-500 mt-2">
+        <h2 className="text-6xl md:text-8xl font-extrabold text-red-400 drop-shadow-[0_0_25px_rgba(248,113,113,0.6)] mt-2">
           $0
         </h2>
-
       </div>
+
+      <button className="mt-12 rounded-full bg-red-500 hover:bg-red-600 transition-all duration-300 px-8 py-4 text-lg font-semibold shadow-lg shadow-red-500/30">
+        Explore Data
+      </button>
 
     </section>
   );
