@@ -25,16 +25,17 @@ export default function Hero() {
           </h2>
         </div>
 
-        <button className="mt-12 rounded-full bg-red-500 hover:bg-red-600 transition-all duration-300 px-8 py-4 text-lg font-semibold shadow-lg shadow-red-500/30">
-          Explore Data
-        </button>
-
     <div className="mt-20 grid grid-cols-1 gap-6 md:grid-cols-2">
   <StatsCard title="Missiles" value="14,582" />
   <StatsCard title="Drones" value="52,341" />
   <StatsCard title="Aircraft" value="372" />
   <StatsCard title="Estimated Cost" value="$486B" />
 </div>
+
+
+<button className="mt-12 rounded-full bg-red-500 hover:bg-red-600 transition-all duration-300 px-8 py-4 text-lg font-semibold shadow-lg shadow-red-500/30">
+          Explore Data
+        </button>
       </section>
     </>
   );
