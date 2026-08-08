@@ -8,7 +8,7 @@ export default function Hero() {
     <>
       <Navbar />
 
-      <section className="min-h-screen bg-gradient-to-br from-black via-zinc-900 to-slate-900 text-white flex flex-col justify-center items-center px-6">
+     <section className="min-h-screen bg-gradient-to-br from-black via-zinc-900 to-slate-900 text-white flex flex-col justify-center items-center px-6 pt-24">
         <h1 className="text-6xl md:text-8xl font-bold text-center animate-[fadeIn_1s_ease-out]">
   War Cost Tracker
 </h1>
