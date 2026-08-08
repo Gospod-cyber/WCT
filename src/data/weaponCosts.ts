@@ -65,36 +65,20 @@ export const weaponCosts: WeaponCost[] = [
       "Estimated from reported Russian procurement data and open-source analysis.",
   },
   {
-    name: "Iskander-M",
+    name: "Iskander-M / KN-23",
     category: "missile",
     minCost: 2400000,
     maxCost: 3000000,
     primaryEstimate: 2700000,
     currency: "USD",
     costBasis: "procurement_cost",
-    confidence: "medium",
-    sourceName: "Militarnyi",
+    confidence: "low",
+    sourceName: "Militarnyi / Ministry of Defence of Ukraine",
     sourceUrl:
       "https://militarnyi.com/en/articles/from-kalibr-to-kinzhal-how-much-do-russian-missiles-really-cost/",
     sourceDate: "2025-10",
     methodology:
-      "Estimated range based on reported Russian procurement values for Iskander-M ballistic missiles.",
-  },
-  {
-    name: "KN-23",
-    category: "missile",
-    minCost: null,
-    maxCost: null,
-    primaryEstimate: null,
-    currency: "USD",
-    costBasis: "unknown",
-    confidence: "low",
-    sourceName: "Ministry of Defence of Ukraine",
-    sourceUrl:
-      "https://mod.gov.ua/en/news/ukrainian-air-defense-intercepted-nearly-92-of-drones-amid-intensified-aerial-attacks-in-may",
-    sourceDate: "2026-06-05",
-    methodology:
-      "KN-23 use is documented, but no sufficiently reliable current public cost estimate is assigned.",
+      "The Ukrainian Ministry of Defence reports 10 missiles as a combined Iskander-M / KN-23 category and does not provide a breakdown between the two missile types. For this estimate, the Iskander-M procurement-cost range is used as the reference value. This is a proxy estimate and does not imply that all 10 missiles were Iskander-M.",
   },
   {
     name: "Iskander-K",
