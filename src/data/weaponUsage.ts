@@ -5,7 +5,6 @@ export type WeaponUsage = {
   sourceUrl: string;
   sourceDate: string;
 };
-
 export const weaponUsage: WeaponUsage[] = [
   {
     name: "Kh-101",
@@ -15,7 +14,6 @@ export const weaponUsage: WeaponUsage[] = [
       "https://mod.gov.ua/en/news/ukrainian-air-defense-intercepted-nearly-92-of-drones-amid-intensified-aerial-attacks-in-may",
     sourceDate: "2026-06-05",
   },
-
   {
     name: "Iskander-M / KN-23",
     quantity: 10,
@@ -24,7 +22,6 @@ export const weaponUsage: WeaponUsage[] = [
       "https://mod.gov.ua/en/news/ukrainian-air-defense-intercepted-nearly-92-of-drones-amid-intensified-aerial-attacks-in-may",
     sourceDate: "2026-06-05",
   },
-
   {
     name: "Kalibr",
     quantity: 11,
@@ -33,7 +30,6 @@ export const weaponUsage: WeaponUsage[] = [
       "https://mod.gov.ua/en/news/ukrainian-air-defense-intercepted-nearly-92-of-drones-amid-intensified-aerial-attacks-in-may",
     sourceDate: "2026-06-05",
   },
-
   {
     name: "Iskander-K",
     quantity: 24,
@@ -42,7 +38,6 @@ export const weaponUsage: WeaponUsage[] = [
       "https://mod.gov.ua/en/news/ukrainian-air-defense-intercepted-nearly-92-of-drones-amid-intensified-aerial-attacks-in-may",
     sourceDate: "2026-06-05",
   },
-
   {
     name: "Kinzhal",
     quantity: 2,

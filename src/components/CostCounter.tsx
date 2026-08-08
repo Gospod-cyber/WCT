@@ -1,30 +1,42 @@
 "use client";
-
-import { useEffect, useState } from "react";
-import { weaponCosts } from "@/data/weaponCosts";
-
+import { useEffect, useRef } from "react";
+import { calculateTotalCost } from "@/data/calculateCost";
 export default function CostCounter() {
-  const [cost, setCost] = useState(0);
-
-  const availableWeapons = weaponCosts.filter(
-  (weapon) => weapon.primaryEstimate !== null
-);
+  const counterRef = useRef<HTMLHeadingElement>(null);
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCost((previous) => previous + 125000);
-    }, 1000);
-
-    return () => clearInterval(interval);
+    const targetCost = calculateTotalCost();
+    const duration = 2000;
+    const startTime = performance.now();
+    let animationFrame: number;
+    const animate = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // Плавне прискорення
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      const currentCost = Math.floor(targetCost * easeOut);
+      if (counterRef.current) {
+        counterRef.current.textContent =
+          `$${currentCost.toLocaleString("en-US")}`;
+      }
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(animate);
+      }
+    };
+    animationFrame = requestAnimationFrame(animate);
+    return () => {
+      cancelAnimationFrame(animationFrame);
+    };
   }, []);
-
   return (
-    <div className="mt-14 text-center animate-[fadeIn_1s_ease-out_0.6s_both]">
+    <div className="mt-14 text-center">
       <p className="text-gray-400 uppercase tracking-[4px]">
         Estimated Cost
       </p>
-
-      <h2 className="mt-2 text-5xl md:text-7xl font-extrabold text-red-400 drop-shadow-[0_0_25px_rgba(248,113,113,0.6)]">
-        ${cost.toLocaleString("en-US")}
+      <h2
+        ref={counterRef}
+        className="mt-2 text-5xl md:text-7xl font-extrabold text-red-400 drop-shadow-[0_0_25px_rgba(248,113,113,0.6)]"
+      >
+        $0
       </h2>
     </div>
   );
