@@ -1,26 +1,48 @@
 "use client";
 
-import GlobeGL from "react-globe.gl";
+import dynamic from "next/dynamic";
 import { useEffect, useRef } from "react";
+
+const GlobeGL = dynamic(() => import("react-globe.gl"), {
+  ssr: false,
+});
 
 export default function Globe() {
   const globeRef = useRef<any>(null);
 
   useEffect(() => {
-    if (!globeRef.current) return;
+    let animationFrame: number;
 
-    globeRef.current.controls().autoRotate = true;
-    globeRef.current.controls().autoRotateSpeed = 0.35;
+    const startRotation = () => {
+      if (globeRef.current) {
+        const controls = globeRef.current.controls();
+
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 0.5;
+
+        return;
+      }
+
+      animationFrame = requestAnimationFrame(startRotation);
+    };
+
+    startRotation();
+
+    return () => {
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+      }
+    };
   }, []);
 
   return (
-    <div className="w-full h-[420px] md:h-[500px] flex justify-center">
+    <div className="w-full flex justify-center">
       <GlobeGL
         ref={globeRef}
-        width={typeof window !== "undefined" ? Math.min(window.innerWidth - 32, 700) : 600}
-height={500}
+        width={700}
+        height={500}
         backgroundColor="rgba(0,0,0,0)"
-        globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
+        globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
         bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
         backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
       />

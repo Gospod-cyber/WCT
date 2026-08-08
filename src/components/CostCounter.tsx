@@ -1,10 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { weaponCosts } from "@/data/weaponCosts";
 
 export default function CostCounter() {
   const [cost, setCost] = useState(0);
 
+  const availableWeapons = weaponCosts.filter(
+  (weapon) => weapon.primaryEstimate !== null
+);
   useEffect(() => {
     const interval = setInterval(() => {
       setCost((previous) => previous + 125000);
