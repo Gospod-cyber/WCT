@@ -14,7 +14,7 @@ export default function CostCounter() {
   }, []);
 
   return (
-    <div className="mt-14 text-center">
+    <div className="mt-14 text-center animate-[fadeIn_1s_ease-out_0.6s_both]">
       <p className="text-gray-400 uppercase tracking-[4px]">
         Estimated Cost
       </p>
