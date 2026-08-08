@@ -14,11 +14,11 @@ export default function Globe() {
   }, []);
 
   return (
-    <div className="w-full h-[500px]">
+    <div className="w-full h-[420px] md:h-[500px] flex justify-center">
       <GlobeGL
         ref={globeRef}
-        width={600}
-        height={500}
+        width={typeof window !== "undefined" ? Math.min(window.innerWidth - 32, 700) : 600}
+height={500}
         backgroundColor="rgba(0,0,0,0)"
         globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
         bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"

@@ -1,6 +1,7 @@
 import Navbar from "./Navbar";
 import StatsCard from "./StatsCard";
 import Globe from "./Globe";
+import CostCounter from "./CostCounter";
 
 export default function Hero() {
   return (
@@ -16,21 +17,13 @@ export default function Hero() {
           Real-time estimation of the financial cost of Russia&apos;s war against Ukraine.
         </p>
 
-        <div className="mt-14 text-center">
-          <p className="text-gray-400 uppercase tracking-[4px]">
-            Estimated Cost
-          </p>
+        <CostCounter />
 
-          <h2 className="mt-2 text-6xl md:text-8xl font-extrabold text-red-400 drop-shadow-[0_0_25px_rgba(248,113,113,0.6)]">
-            $0
-          </h2>
-        </div>
 
-    <div className="mt-20 grid grid-cols-1 gap-6 md:grid-cols-2">
+    <div className="mt-20 grid w-full max-w-5xl grid-cols-1 gap-6 md:grid-cols-3">
   <StatsCard title="Missiles" value="14,582" />
   <StatsCard title="Drones" value="52,341" />
   <StatsCard title="Aircraft" value="372" />
-  <StatsCard title="Estimated Cost" value="$486B" />
 </div>
 
 
