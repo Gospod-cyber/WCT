@@ -1,5 +1,6 @@
 import Navbar from "./Navbar";
 import StatsCard from "./StatsCard";
+import Globe from "./Globe";
 
 export default function Hero() {
   return (
@@ -36,6 +37,11 @@ export default function Hero() {
 <button className="mt-12 rounded-full bg-red-500 hover:bg-red-600 transition-all duration-300 px-8 py-4 text-lg font-semibold shadow-lg shadow-red-500/30">
           Explore Data
         </button>
+
+        <div className="mt-16 w-full max-w-4xl">
+  <Globe />
+</div>
+
       </section>
     </>
   );
