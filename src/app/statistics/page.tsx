@@ -16,6 +16,8 @@ export default function StatisticsPage() {
         return "Verified";
       case "partial":
         return "Partial data";
+      case "approximate":
+        return "Approximate";
       default:
         return "Data pending";
     }
@@ -27,15 +29,29 @@ export default function StatisticsPage() {
         return "text-green-400";
       case "partial":
         return "text-yellow-400";
+      case "approximate":
+        return "text-orange-400";
       default:
         return "text-gray-500";
     }
   };
 
+  const maxYearlyAttacks = Math.max(
+    ...yearlyStatistics.map((item) => item.totalAttacks ?? 0),
+    1
+  );
+
+  const monthlyData = selectedYearData?.monthlyBreakdown ?? [];
+
+  const maxMonthlyAttacks = Math.max(
+    ...monthlyData.map((month) => month.totalAttacks),
+    1
+  );
+
   return (
     <main className="min-h-screen bg-black px-6 pb-20 pt-32 text-white">
       <div className="mx-auto max-w-7xl">
-        {/* Header */}
+
         <p className="text-sm uppercase tracking-[4px] text-red-400">
           Statistics
         </p>
@@ -48,8 +64,8 @@ export default function StatisticsPage() {
           Overview of documented Russian aerial attacks against Ukraine.
         </p>
 
-        {/* Timeline */}
         <section className="mt-12">
+
           <p className="text-sm uppercase tracking-[4px] text-red-400">
             Timeline
           </p>
@@ -59,12 +75,20 @@ export default function StatisticsPage() {
           </h2>
 
           <div className="mt-8 rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8">
+
             <div className="space-y-6">
+
               {yearlyStatistics.map((item) => {
                 const isSelected = selectedYear === item.year;
 
+                const width =
+                  item.totalAttacks !== null
+                    ? (item.totalAttacks / maxYearlyAttacks) * 100
+                    : 0;
+
                 return (
                   <div key={item.year}>
+
                     <button
                       type="button"
                       onClick={() =>
@@ -74,7 +98,9 @@ export default function StatisticsPage() {
                       }
                       className="block w-full text-left"
                     >
+
                       <div className="mb-2 flex items-center justify-between">
+
                         <span
                           className={
                             isSelected
@@ -90,9 +116,11 @@ export default function StatisticsPage() {
                             ? item.totalAttacks.toLocaleString("en-US")
                             : "Pending"}
                         </span>
+
                       </div>
 
                       <div className="h-3 overflow-hidden rounded-full bg-white/5">
+
                         {item.totalAttacks !== null && (
                           <div
                             className={
@@ -101,19 +129,20 @@ export default function StatisticsPage() {
                                 : "h-full rounded-full bg-red-400/60 transition-all duration-500"
                             }
                             style={{
-                              width: `${Math.min(
-                                (item.totalAttacks / 56700) * 100,
-                                100
-                              )}%`,
+                              width: `${width}%`,
                             }}
                           />
                         )}
+
                       </div>
+
                     </button>
 
                     {isSelected && (
                       <div className="mt-6 ml-4 border-l border-white/10 pl-5">
+
                         <div className="flex items-center justify-between">
+
                           <p className="text-xs uppercase tracking-[3px] text-gray-500">
                             {item.year} — Breakdown
                           </p>
@@ -125,10 +154,13 @@ export default function StatisticsPage() {
                           >
                             {getStatusLabel(item.status)}
                           </span>
+
                         </div>
 
                         <div className="mt-6 grid gap-4 md:grid-cols-3">
+
                           <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+
                             <p className="text-xs uppercase tracking-[2px] text-gray-500">
                               Missile Attacks
                             </p>
@@ -138,9 +170,11 @@ export default function StatisticsPage() {
                                 ? item.missileAttacks.toLocaleString("en-US")
                                 : "—"}
                             </p>
+
                           </div>
 
                           <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+
                             <p className="text-xs uppercase tracking-[2px] text-gray-500">
                               Drone Attacks
                             </p>
@@ -150,9 +184,11 @@ export default function StatisticsPage() {
                                 ? item.droneAttacks.toLocaleString("en-US")
                                 : "—"}
                             </p>
+
                           </div>
 
                           <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+
                             <p className="text-xs uppercase tracking-[2px] text-gray-500">
                               Air Attacks
                             </p>
@@ -162,10 +198,111 @@ export default function StatisticsPage() {
                                 ? item.airAttacks.toLocaleString("en-US")
                                 : "—"}
                             </p>
+
                           </div>
+
                         </div>
 
-                        <div className="mt-6 rounded-2xl border border-white/10 bg-black/40 p-5">
+                        {monthlyData.length > 0 && (
+                          <div className="mt-8">
+
+                            <p className="text-xs uppercase tracking-[3px] text-gray-500">
+                              Monthly Breakdown
+                            </p>
+
+                            <div className="mt-6 space-y-6">
+
+                              {monthlyData.map((month) => {
+
+                                const monthWidth =
+                                  (month.totalAttacks / maxMonthlyAttacks) *
+                                  100;
+
+                                return (
+                                  <div
+                                    key={`${item.year}-${month.month}`}
+                                  >
+
+                                    <div className="mb-2 flex items-center justify-between">
+
+                                      <span className="text-sm font-medium text-gray-300">
+                                        {month.monthName}
+                                      </span>
+
+                                      <span className="text-sm text-gray-500">
+                                        {month.totalAttacks.toLocaleString("en-US")}
+                                      </span>
+
+                                    </div>
+
+                                    <div className="h-2 overflow-hidden rounded-full bg-white/5">
+
+                                      <div
+                                        className="h-full rounded-full bg-slate-400/70 transition-all duration-500"
+                                        style={{
+                                          width: `${monthWidth}%`,
+                                        }}
+                                      />
+
+                                    </div>
+
+                                    <div className="mt-3 grid gap-3 md:grid-cols-3">
+
+                                      <div className="rounded-xl border border-white/5 bg-black/30 p-3">
+
+                                        <p className="text-[10px] uppercase tracking-[2px] text-gray-600">
+                                          Drones
+                                        </p>
+
+                                        <p className="mt-1 text-sm font-semibold text-gray-300">
+                                          {month.drones !== null
+                                            ? month.drones.toLocaleString("en-US")
+                                            : "—"}
+                                        </p>
+
+                                      </div>
+
+                                      <div className="rounded-xl border border-white/5 bg-black/30 p-3">
+
+                                        <p className="text-[10px] uppercase tracking-[2px] text-gray-600">
+                                          Cruise Missiles
+                                        </p>
+
+                                        <p className="mt-1 text-sm font-semibold text-gray-300">
+                                          {month.cruiseMissiles !== null
+                                            ? month.cruiseMissiles.toLocaleString("en-US")
+                                            : "—"}
+                                        </p>
+
+                                      </div>
+
+                                      <div className="rounded-xl border border-white/5 bg-black/30 p-3">
+
+                                        <p className="text-[10px] uppercase tracking-[2px] text-gray-600">
+                                          Ballistic Missiles
+                                        </p>
+
+                                        <p className="mt-1 text-sm font-semibold text-gray-300">
+                                          {month.ballisticMissiles !== null
+                                            ? month.ballisticMissiles.toLocaleString("en-US")
+                                            : "—"}
+                                        </p>
+
+                                      </div>
+
+                                    </div>
+
+                                  </div>
+                                );
+                              })}
+
+                            </div>
+
+                          </div>
+                        )}
+
+                        <div className="mt-8 rounded-2xl border border-white/10 bg-black/40 p-5">
+
                           <p className="text-xs uppercase tracking-[2px] text-gray-500">
                             Source
                           </p>
@@ -186,37 +323,46 @@ export default function StatisticsPage() {
                           >
                             Open source →
                           </a>
+
                         </div>
+
                       </div>
                     )}
+
                   </div>
                 );
               })}
+
             </div>
+
           </div>
+
         </section>
 
         {selectedYearData && (
           <section className="mt-8 rounded-3xl border border-red-400/20 bg-red-400/5 p-6 md:p-8">
+
             <p className="text-sm uppercase tracking-[3px] text-red-400">
               Selected Year
             </p>
 
             <div className="mt-3 flex items-end justify-between">
+
               <h2 className="text-3xl font-bold">
                 {selectedYearData.year}
               </h2>
 
               <p className="text-gray-400">
                 {selectedYearData.totalAttacks !== null
-                  ? `${selectedYearData.totalAttacks.toLocaleString(
-                      "en-US"
-                    )} recorded attacks`
+                  ? `${selectedYearData.totalAttacks.toLocaleString("en-US")} recorded attacks`
                   : "Data is being verified"}
               </p>
+
             </div>
+
           </section>
         )}
+
       </div>
     </main>
   );

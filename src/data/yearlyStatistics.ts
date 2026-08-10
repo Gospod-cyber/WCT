@@ -9,8 +9,15 @@ export type YearlyStatistic = {
   sourceName: string;
   sourceUrl: string;
   note: string;
+monthlyBreakdown?: {
+  month: number;
+  monthName: string;
+  totalAttacks: number;
+  drones: number | null;
+  cruiseMissiles: number | null;
+  ballisticMissiles: number | null;
+}[];
 };
-
 export const yearlyStatistics: YearlyStatistic[] = [
   {
     year: 2022,
@@ -60,16 +67,67 @@ export const yearlyStatistics: YearlyStatistic[] = [
     sourceUrl: "https://www.kas.de/en/web/ukraine/blickpunkt-ukraine",
     note: "Approximately 56,700 documented air attacks.",
   },
-  {
-    year: 2026,
-    totalAttacks: 36890,
-    missileAttacks: null,
-    droneAttacks: null,
-    airAttacks: null,
-    status: "partial",
-    methodology: "Ukraine Air War Monitor.",
-    sourceName: "Ukraine Air War Monitor",
-    sourceUrl: "https://www.kas.de/en/web/ukraine/blickpunkt-ukraine",
-    note: "January–June 2026 only.",
-  },
+ {
+  year: 2026,
+  totalAttacks: 36890,
+  missileAttacks: null,
+  droneAttacks: null,
+  airAttacks: null,
+  status: "partial",
+  methodology: "Ukraine Air War Monitor.",
+  sourceName: "Ukraine Air War Monitor",
+  sourceUrl: "https://www.kas.de/en/web/ukraine/blickpunkt-ukraine",
+  note: "January–June 2026 only.",
+
+  monthlyBreakdown: [
+    {
+      month: 1,
+      monthName: "January",
+      totalAttacks: 4579,
+      drones: 4442,
+      cruiseMissiles: null,
+      ballisticMissiles: null,
+    },
+    {
+      month: 2,
+      monthName: "February",
+      totalAttacks: 5349,
+      drones: 5059,
+      cruiseMissiles: null,
+      ballisticMissiles: null,
+    },
+    {
+      month: 3,
+      monthName: "March",
+      totalAttacks: 6603,
+      drones: 6462,
+      cruiseMissiles: 98,
+      ballisticMissiles: 43,
+    },
+    {
+      month: 4,
+      monthName: "April",
+      totalAttacks: 6722,
+      drones: 6583,
+      cruiseMissiles: 91,
+      ballisticMissiles: 48,
+    },
+    {
+      month: 5,
+      monthName: "May",
+      totalAttacks: 7717,
+      drones: 7503,
+      cruiseMissiles: 120,
+      ballisticMissiles: 92,
+    },
+    {
+      month: 6,
+      monthName: "June",
+      totalAttacks: 5920,
+      drones: 5744,
+      cruiseMissiles: 82,
+      ballisticMissiles: 94,
+    },
+  ],
+},
 ];
