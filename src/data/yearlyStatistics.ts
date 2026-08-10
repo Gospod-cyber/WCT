@@ -1,115 +1,75 @@
-export type YearlyStatistics = {
+export type YearlyStatistic = {
   year: number;
-
-  // Total number of recorded aerial attack assets/events
-  // depending on the source methodology.
   totalAttacks: number | null;
-
-  // Category breakdown.
-  // null means that reliable year-level data is not available yet.
   missileAttacks: number | null;
   droneAttacks: number | null;
   airAttacks: number | null;
-
-  status: "verified" | "partial" | "pending";
-
-  note: string;
-
+  status: "verified" | "partial" | "approximate" | "pending";
+  methodology: string;
   sourceName: string;
   sourceUrl: string;
+  note: string;
 };
 
-export const yearlyStatistics: YearlyStatistics[] = [
+export const yearlyStatistics: YearlyStatistic[] = [
   {
     year: 2022,
-
     totalAttacks: null,
     missileAttacks: null,
     droneAttacks: null,
     airAttacks: null,
-
     status: "pending",
-
-    note:
-      "Year-level data is being reconstructed from verified historical sources. The Ukraine Air War Monitor database begins in September 2022.",
-
-    sourceName: "Ukraine Air War Monitor / Kyiv Dialogue",
-    sourceUrl:
-      "https://www.kas.de/en/web/ukraine/blickpunkt-ukraine/detail/-/content/ukraine-air-war-monitor-vol-xviii",
+    methodology: "Historical data reconstruction is in progress.",
+    sourceName: "Ukraine Air War Monitor",
+    sourceUrl: "https://www.kas.de/en/web/ukraine/blickpunkt-ukraine",
+    note: "Complete comparable annual data is not currently available.",
   },
-
   {
     year: 2023,
-
-    totalAttacks: null,
-    missileAttacks: null,
-    droneAttacks: null,
+    totalAttacks: 4484,
+    missileAttacks: 1335,
+    droneAttacks: 3149,
     airAttacks: null,
-
-    status: "pending",
-
-    note:
-      "Year-level data is being reconstructed from verified historical sources.",
-
-    sourceName: "Ukraine Air War Monitor / Kyiv Dialogue",
-    sourceUrl:
-      "https://www.kas.de/en/web/ukraine/blickpunkt-ukraine/detail/-/content/ukraine-air-war-monitor-vol-xviii",
+    status: "verified",
+    methodology: "Ukrainian Air Force annual statistics.",
+    sourceName: "Ukrainian Air Force",
+    sourceUrl: "https://www.mil.gov.ua/",
+    note: "1,335 missiles and 3,149 strike UAVs.",
   },
-
   {
     year: 2024,
-
     totalAttacks: 13300,
-
     missileAttacks: null,
     droneAttacks: 11000,
     airAttacks: null,
-
-    status: "verified",
-
-    note:
-      "Approximately 13,300 air attacks using drones, missiles and cruise missiles against civilian targets were recorded in 2024. Approximately 11,000 drone attacks were recorded.",
-
-    sourceName: "Ukraine Air War Monitor Vol. XII",
-    sourceUrl:
-      "https://www.kas.de/en/web/ukraine/blickpunkt-ukraine/detail/-/content/ukraine-air-war-monitor-vol-xi",
+    status: "approximate",
+    methodology: "Ukraine Air War Monitor.",
+    sourceName: "Ukraine Air War Monitor",
+    sourceUrl: "https://www.kas.de/en/web/ukraine/blickpunkt-ukraine",
+    note: "Approximately 13,300 documented air attacks.",
   },
-
   {
     year: 2025,
-
     totalAttacks: 56700,
-
     missileAttacks: null,
     droneAttacks: 54700,
     airAttacks: null,
-
-    status: "verified",
-
-    note:
-      "Approximately 56,700 air attacks using drones, missiles and cruise missiles against civilian targets were recorded in 2025. Approximately 54,700 were drone attacks.",
-
-    sourceName: "Ukraine Air War Monitor Vol. XII",
-    sourceUrl:
-      "https://www.kas.de/en/web/ukraine/blickpunkt-ukraine/detail/-/content/ukraine-air-war-monitor-vol-xi",
+    status: "approximate",
+    methodology: "Ukraine Air War Monitor.",
+    sourceName: "Ukraine Air War Monitor",
+    sourceUrl: "https://www.kas.de/en/web/ukraine/blickpunkt-ukraine",
+    note: "Approximately 56,700 documented air attacks.",
   },
-
   {
     year: 2026,
-
-    totalAttacks: 36463,
-
+    totalAttacks: 36890,
     missileAttacks: null,
     droneAttacks: null,
     airAttacks: null,
-
     status: "partial",
-
-    note:
-      "January–June 2026 only. The figure represents the recorded long-range drones, cruise missiles and ballistic missiles used against Ukraine during these six months. The full-year figure will be updated as new data becomes available.",
-
+    methodology: "Ukraine Air War Monitor.",
     sourceName: "Ukraine Air War Monitor",
-    sourceUrl:
-      "https://www.kas.de/en/web/ukraine/blickpunkt-ukraine/detail/-/content/ukraine-air-war-monitor-vol-xviii",
+    sourceUrl: "https://www.kas.de/en/web/ukraine/blickpunkt-ukraine",
+    note: "January–June 2026 only.",
   },
 ];
