@@ -3,7 +3,8 @@ import StatsCard from "./StatsCard";
 import Globe from "./Globe";
 import CostCounter from "./CostCounter";
 import WeaponBreakdown from "./WeaponBreakdown";
-import AttackHistory from "./AttackHistory";
+import AttackOverview from "./AttackOverview";
+<div className="mt-20 grid w-full max-w-5xl grid-cols-1 gap-6 md:grid-cols-3 animate-[fadeIn_1s_ease-out_0.9s_both]"></div>
 export default function Hero() {
   return (
     <>
@@ -17,7 +18,8 @@ export default function Hero() {
         </p>
         <CostCounter />
         <WeaponBreakdown />
-        <AttackHistory />
+        <AttackOverview />
+        
         <div className="mt-20 grid w-full max-w-5xl grid-cols-1 gap-6 md:grid-cols-3 animate-[fadeIn_1s_ease-out_0.9s_both]">
           <StatsCard title="Missiles" value="14,582" />
           <StatsCard title="Drones" value="52,341" />
