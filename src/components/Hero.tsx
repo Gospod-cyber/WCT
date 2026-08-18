@@ -37,30 +37,18 @@ export default function Hero() {
 
           {/* STATS */}
           <div className="mt-20 grid w-full max-w-5xl grid-cols-1 gap-6 md:grid-cols-3">
-  <div className="mt-20 grid w-full max-w-5xl grid-cols-1 gap-6 md:grid-cols-3">
-  {weaponStatistics.map((item) => (
-    <StatsCard
-      key={item.category}
-      title={item.name}
-      value={
-        item.quantity !== null
-          ? item.quantity.toLocaleString("en-US")
-          : "Data pending"
-      }
-    />
-  ))}
-</div>
-
-  <StatsCard
-    title="Drones"
-    value="Data pending"
-  />
-
-  <StatsCard
-    title="Aircraft"
-    value="Data pending"
-  />
-</div>
+            {weaponStatistics.map((item) => (
+              <StatsCard
+                key={item.category}
+                title={item.name}
+                value={
+                  item.quantity !== null
+                    ? item.quantity.toLocaleString("en-US")
+                    : "Data pending"
+                }
+              />
+            ))}
+          </div>
 
           {/* EXPLORE */}
           <Link

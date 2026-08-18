@@ -70,8 +70,8 @@ export const yearlyStatistics: YearlyStatistic[] = [
  {
   year: 2026,
   totalAttacks: 36890,
-  missileAttacks: null,
-  droneAttacks: null,
+  missileAttacks: 668,
+  droneAttacks: 35793,
   airAttacks: null,
   status: "partial",
   methodology: "Ukraine Air War Monitor.",
